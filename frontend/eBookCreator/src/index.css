@@ -5,7 +5,8 @@
 @import "tailwindcss";
 
 /* Design System Setup */
-#theme {
+/* #theme { */
+:root {
   --font-display: 'Inter', 'sans-serif';
   --breakpoints-3xl: 1920px;
   --color-primary: #FF9324;
