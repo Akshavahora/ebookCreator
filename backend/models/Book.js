@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // Chapter Schema
 const chapterSchema = new mongoose.Schema(
