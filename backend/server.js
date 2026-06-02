@@ -7,6 +7,8 @@ import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/authRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
+
 
 const app = express();
 
@@ -36,6 +38,8 @@ app.use("/backend/uploads", express.static(path.join(__dirname, "uploads")));
 // Routes Here
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
+app.use("/api/ai", aiRoutes);
+
 
 // Start server
 const PORT = process.env.PORT || 5000;
