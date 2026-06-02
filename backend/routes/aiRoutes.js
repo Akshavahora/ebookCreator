@@ -11,6 +11,6 @@ router.use(protect);
 router.post('/generate-outline', generateOutline);
 
 // Route to generate chapter content
-router.post('/generate-chapter', generateChapter);
+router.post('/generate-chapter-content', generateChapter);
 
 export default router;

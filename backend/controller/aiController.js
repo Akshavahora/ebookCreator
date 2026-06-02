@@ -91,12 +91,47 @@ const generateOutline = async (req,res) => {
 };
 
 // @desc Generate content for a chapter
-// @route POST /api/ai/generate-chapter
+// @route POST /api/ai/generate-chapter-content
 // @access Private
 
 const generateChapter =  async (req,res) => {
     try {
+        const { chapterTitle, chapterDescription, style } = req.body;
 
+        if(!chapterTitle) {
+            return res.status(400).json({ message: "Please provide a chapter title" });
+        }
+
+        const prompt = `You are an expert writer specializing in ${style} content. Write a complete chapter for a book with the following specifications:
+        
+        Chapter Title: ${chapterTitle}
+        ${chapterDescription ? 'Chapter Description: ${chapterDescription}' : ""}
+        Writing style: ${style}
+        target Length: comprehensive and detailed (aim for 1500-2000 words)
+        
+        Requirements:
+        1. Write in a ${style.toLowerCase()} tone throughout the chapter
+        2. Structure the content with clear sections and smooth transitions
+        3. Include relevant examples, explanations, or anecdotes as appropriate for the style
+        4. Ensure the content flow logically from introduction to conclusion, providing a satisfying and complete reading experience
+        5. Make the content engaging and informative, keeping the reader interested from start to finish and valuable to readers interested in the topic
+        ${chapterDescription ? "6. Cover all points mention in the chapter description in detail" : ""}
+        
+        Format Guidelines:
+        - Start with compelling opening paragraph
+        - Use clear photograph breaks for readability
+        - Include subheading if appropriate for the content length and structure
+        - End with a strong conclusion that summarizes the key takeaways and leaves the reader with something to ponder or transition smoothly to the next chapter
+        - Write in plain text without any markdown, HTML tags, or special formatting. Focus on delivering high-quality content that meets the specified requirements.
+        
+        Begin writing the chapter content now:`;
+
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash-lite",
+            contents: prompt,
+        });
+
+        res.status(200).json({ content: response.text });
     }
     catch (error) {
         console.error("Error generating chapter:", error);
