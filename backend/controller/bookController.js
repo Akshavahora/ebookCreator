@@ -1,7 +1,7 @@
 import Book from "../models/Book.js"
 
 // @desc    Create a new Book
-// @route   POst /api/book
+// @route   POst /api/books
 // @access  Private
 export const createBook = async (req, res) => {
     try {
@@ -62,7 +62,7 @@ export const getBookById = async (req, res) => {
 };
 
 // @desc    Update a book
-// @route   PUT /api/book/:id
+// @route   PUT /api/books/:id
 // @access  Private
 export const updateBook = async (req, res) => {
     try {
@@ -86,7 +86,7 @@ export const updateBook = async (req, res) => {
 };
 
 // @desc    Delete a book
-// @route   DELETE /api/book/:id
+// @route   DELETE /api/books/:id
 // @access  Private
 export const deleteBook = async (req, res) => {
     try {
@@ -109,7 +109,7 @@ export const deleteBook = async (req, res) => {
 };  
 
 // @desc    Update a book's Cover
-// @route   PUT /api/book/cover/:id
+// @route   PUT /api/books/cover/:id
 // @access  Private
 export const updateBookCover = async (req, res) => {
     try {
@@ -124,7 +124,7 @@ export const updateBookCover = async (req, res) => {
         }
 
         if(req.file) {
-            book.coverImage = `/${req.file.path}`;
+            book.coverImage = `${req.file.path}`;
         }
         else {
             return res.status(400).json({ message: "Not image file provided"});

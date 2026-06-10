@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import authRoutes from "./routes/authRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
+import exportRoutes from "./routes/exportRoutes.js";
 
 
 const app = express();
@@ -39,6 +40,7 @@ app.use("/backend/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/export", exportRoutes);
 
 
 // Start server
