@@ -8,7 +8,9 @@ const generateToken = (id) => {
   });
 };
 
-// Register user
+// @desc    Register new user
+// @route   POST /api/auth/register
+// @access  Public
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -52,7 +54,9 @@ export const registerUser = async (req, res) => {
   }
 };
 
-// Login user
+// @desc    Login user
+// @route   /api/auth/login
+// @access  Public
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -77,7 +81,9 @@ export const loginUser = async (req, res) => {
   }
 };
 
-// Get profile
+// @desc    Get current login User
+// @route   /api/auth/profile
+// @access  Public
 export const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -93,7 +99,8 @@ export const getProfile = async (req, res) => {
   }
 };
 
-// Update profile
+// @desc    Update user profile
+// @route   /api/auth/profile
 export const updateUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
