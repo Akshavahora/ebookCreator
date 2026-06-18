@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div>
       <Routes>
-        {/* Public Rooutes */}
+        {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Signup" element={<SignupPage />} />
