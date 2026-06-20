@@ -1,3 +1,4 @@
+// Importing different classes and utilities from the docx library in Node.js 
 import {
   Document,
   Packer,

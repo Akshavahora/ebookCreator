@@ -5,6 +5,7 @@ const LandingPage = () => {
   return (
     <div>
       <Navbar />
+
     </div>
   )
 }

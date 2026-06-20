@@ -123,6 +123,7 @@ export const updateBookCover = async (req, res) => {
             return res.status(401).json({ message: "Not authorized to update this book"});
         }
 
+        // cover Image
         if(req.file) {
             book.coverImage = `${req.file.path}`;
         }
