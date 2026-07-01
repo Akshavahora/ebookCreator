@@ -1,4 +1,4 @@
-import { Lightbulb, BookOpen, Download, Library } from "lucid-react";
+import { Lightbulb, BookOpen, Download, Library } from "lucide-react";
 
 export const FEATURES = [
     {

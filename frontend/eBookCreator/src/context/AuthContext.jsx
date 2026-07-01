@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState, useEffect, children} from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
+export const useAuth = () => { //custom hook to read context data 
     const context = useContext(AuthContext);
     if(!context) {
         throw new Error("useAuth must be used within an AuthProvider")
@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }) => {
         setUser(userData);
         setIsAuthenticated(true);
     };
-
 
     const logout = () => {
         localStorage.removeItem('token');

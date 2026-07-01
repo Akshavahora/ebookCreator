@@ -85,7 +85,7 @@ const processMarkdownToDocx = (markdown) => {
 
           paragraphs.push(
             new Paragraph({
-              text: nextToken.content,
+              text: nextToken.content, // content of an paragraph 
               heading: headingLevel,
               spacing: {
                 before: DOCX_STYLES.spacing.headingBefore,
@@ -297,16 +297,16 @@ const processInlineContent = (children) => {
 
   children.forEach((child) => {
     if (child.type === "strong_open") {
-      flushText();
+      flushTextBuffer();
       currentFormatting.bold = true;
     } else if (child.type === "strong_close") {
-      flushText();
+      flushTextBuffer();
       currentFormatting.bold = false;
     } else if (child.type === "em_open") {
-      flushText();
+      flushTextBuffer();
       currentFormatting.italics = true;
     } else if (child.type === "em_close") {
-      flushText();
+      flushTextBuffer();
       currentFormatting.italics = false;
     } else if (child.type === "u_open") {
       flushTextBuffer();
@@ -319,7 +319,7 @@ const processInlineContent = (children) => {
     }
   });
 
-  flushText();
+  flushTextBuffer();
   return textRuns;
 };
 
@@ -345,13 +345,6 @@ const exportAsDocument = async (req, res) => {
     if (book.coverImage && !book.coverImage.includes("pravatar")) {
       const imagePath = book.coverImage.substring();
 
-      // console.log("Stored Path:", book.coverImage);
-
-      // const imagePath = book.coverImage.substring(1);
-
-      // console.log("Final Path:", imagePath);
-      // console.log("Exists:", fs.existsSync(imagePath));
-
       try {
         if (fs.existsSync(imagePath)) {
           const imageBuffer = fs.readFileSync(imagePath);
@@ -371,7 +364,7 @@ const exportAsDocument = async (req, res) => {
                 new ImageRun({
                   data: imageBuffer,
                   transformation: {
-                    width: 400, //wisth in pixels
+                    width: 1000, //width in pixels
                     height: 550,
                   },
                 }),
@@ -864,11 +857,11 @@ const exportAsPDF = async (req, res) => {
           book.coverImage.replace(/\\/g, "/"),
         );
 
-        console.log("Resolved Path:", imagePath);
-        console.log("Exists:", fs.existsSync(imagePath));
+        // console.log("Resolved Path:", imagePath);
+        // console.log("Exists:", fs.existsSync(imagePath));
 
-        console.log("Current Directory:", process.cwd());
-        console.log("Image Path:", imagePath);
+        // console.log("Current Directory:", process.cwd());
+        // console.log("Image Path:", imagePath);
 
         if (fs.existsSync(imagePath)) {
           const pageWidth =

@@ -1,4 +1,4 @@
-import {GoogleGenAI} from '@google/genai'//loads the Gemini AI library installed from npm
+import {GoogleGenAI} from '@google/generative-ai'//loads the Gemini AI library installed from npm
 
 // console.log("API Key:", process.env.GEMINI_API_KEY);
 
