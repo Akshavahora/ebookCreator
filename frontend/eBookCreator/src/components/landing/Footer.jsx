@@ -1,73 +1,78 @@
-import { BookOpen, Twitter, Linkedin, Github } from "lucide-react";
+import { BookOpen} from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="">
+    <footer className="relative bg-gradient-to-br from-gray-950 via-gray950 to-violet-950 text-white o overflow-hidden ">
         {/* Subtle background Pattern */}
-        <div className="">
-            <div className=""></div>
+        <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="">
-            <div className="">
+        <div className="relative max-w-7xl mx-auto lg:px-8">
+            <div className="py-16 grid grid-cols-1  md:grid-cols-12 gap-12">
                 {/* Brand Section */}
-                <div className="">
+                <div className="md:col-span-5 space-y-6">
                     <a
                         href="/"
-                        className=""
+                        className="flex- items-center gap-2 space-x-2.5 group"
                     >
-                        <div className="">
-                            <BookOpen className="" />
+                        <div className="w-10 h-10
+                         bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-all duration-300 group-hover:scale-105">
+                            <BookOpen className="w-5 h-5 text-white" />
                         </div>
-                        <span className="">eBook Creator</span>
+                        <span className="text-xl font-semibold tracking-tight">eBook Creator</span>
                     </a>
-                    <p className="">
+                    <p className="text-gray-400 leading-relaxed max-w-sm">
                         Create, Design and publish stunning ebook with the power of AI.
                     </p>
 
                     {/* Social Links */}
-                    <div className="">
+                    <div className="flex items-center space-x-3 pt-2">
                         <a
-                            href="http://twitter.com"
-                            className=""
+                            href="http://twitter.com" target="_blank"
+                            className="w-10 h-10 bg-white/5 hover:bg-violet-600 rounded-lg flex items-center justify-center transition-all
+                             duration-200 hover:scale-110"
                             aria-label="Twitter"
-                        >
-                            <Twitter className="" />
+                        > 
+                            <FaTwitter className="w-5 h-5" />
                         </a>
                         <a
-                            href="http://linkedin.com"
-                            className=""
-                            aria-label="LinkedIN"
+                            href="http://linkedin.com" target="_blank"
+                            className="w-10 h-10 bg-white/5 hover:bg-violet-600 rounded-lg flex items-center justify-center transition-all
+                             duration-200 hover:scale-110"
+                            aria-label="LinkedIn"
                         >
-                            <Linkedin className="" />
+                            <FaLinkedin className="w-5 h-5" />
                         </a>
                         <a
-                            href="http://github.com"
-                            className=""
+                            href="http://github.com" target="_blank"
+                            className="w-10 h-10 bg-white/5 hover:bg-violet-600 rounded-lg flex items-center justify-center transition-all
+                             duration-200 hover:scale-110"
                             aria-label="GitHub"
                         >
-                            <Github className="" />
+                            <FaGithub className="w-5 h-5" />
                         </a>
                     </div>
                 </div>
 
-                {/* Quich Links */}
-                <div className="">
+                {/* Quick Links */}
+                <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
                     <div>
-                        <h3 className="">Product</h3>
-                        <ul className="">
+                        <h3 className="text-sm font-semibold text-white mb-4">Product</h3>
+                        <ul className="space-y-3">
                             <li>
-                                <a href="#features" className="">
+                                <a href="#features" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     Features
                                 </a>
                             </li>
                             <li>
-                                <a href="#pricing" className="">
+                                <a href="#pricing" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     Pricing
                                 </a>
                             </li>
                             <li>
-                                <a href="#templates" className="">
+                                <a href="#templates" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     Templates
                                 </a>
                             </li>
@@ -75,20 +80,20 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h3 className="">Company</h3>
-                        <ul className="">
+                        <h3 className="text-sm font-semibold text-white mb-4">Company</h3>
+                        <ul className="space-y-3">
                             <li>
-                                <a href="#about" className="">
+                                <a href="#about" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     About
                                 </a>
                             </li>
                             <li>
-                                <a href="#contact" className="">
+                                <a href="#contact" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     Contact
                                 </a>
                             </li>
                             <li>
-                                <a href="#blog" className="">
+                                <a href="#blog" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     Blog
                                 </a>
                             </li>
@@ -96,15 +101,15 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h3 className="Legal"></h3>
-                        <ul className="">
+                        <h3 className="text-sm font-semibold text-white mb-4">Legal</h3>
+                        <ul className="space-y-3">
                             <li>
-                                <a href="#privacy" className="">
+                                <a href="#privacy" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     Privacy
                                 </a>
                             </li>
                             <li>
-                                <a href="#terms" className="">
+                                <a href="#terms" className="text-gray-400 hover:text-violet-400 transition-colors duration-200 text-sm">
                                     Terms
                                 </a>
                             </li>
@@ -114,13 +119,13 @@ const Footer = () => {
             </div>
 
             {/* Bottom Bar */}
-            <div className="">
-                <div className="">
-                    <p className="">
+            <div className="border-t border-white/10 py-8 ">
+                <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p className="text-gray-400 text-sm">
                         © {new Date().getFullYear()} eBook Creator. All right reserved.
                     </p>
-                    <p className="">
-                        Made with <span className="">♡</span> for creators
+                    <p className="text-gray-500 text-sm">
+                        Made with <span className="text-violet-400">♡</span> for creators
                     </p>
                 </div>
             </div>
