@@ -3,10 +3,11 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 
 const ProtectedRoute = ({children}) => {
-  // Here you would typically check if the user is authenticated
-  const isAuthenticated = true; // Replace with actual authentication logic
-  const loading = false; // Replace with actual loading state
+
+  const {isAuthenticated, loading} = useAuth(); // Assuming you have a custom hook for auth
   const location = useLocation(); 
+
+
 
   if(loading) {
     // You can return a loading spinner or placeholder here

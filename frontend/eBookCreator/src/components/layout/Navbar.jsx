@@ -52,10 +52,10 @@ const Navbar = () => {
 
         { /* Auth Buttons & Profile */}
         <div className="hidden lg:flex items-center space-x-3">
-          {!isAuthenticated ? (
+          {isAuthenticated ? (
             <ProfileDropdown
               isOpen={profileDropdownOpen}
-              onToggle={(e) => {
+              onToggle={(e) => {s
                 e.stopPropagation();
                 setProfileDropdownOpen(!profileDropdownOpen);
               }}
