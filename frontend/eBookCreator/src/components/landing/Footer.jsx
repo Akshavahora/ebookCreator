@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-br from-gray-950 via-gray950 to-violet-950 text-white o overflow-hidden ">
+    <footer className="relative bg-linear-to-br from-gray-950 via-gray950 to-violet-950 text-white o overflow-hidden ">
         {/* Subtle background Pattern */}
         <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500 rounded-full blur-3xl"></div>
@@ -18,7 +18,7 @@ const Footer = () => {
                         className="flex- items-center gap-2 space-x-2.5 group"
                     >
                         <div className="w-10 h-10
-                         bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-all duration-300 group-hover:scale-105">
+                         bg-linear-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-all duration-300 group-hover:scale-105">
                             <BookOpen className="w-5 h-5 text-white" />
                         </div>
                         <span className="text-xl font-semibold tracking-tight">eBook Creator</span>

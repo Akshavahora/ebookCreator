@@ -1,7 +1,7 @@
 import axios from "axios";
-import { BASE_URL } from "./apiPath";
-
-const axiosInstance = axios.create({ 
+import { BASE_URL } from "./apiPath.js";
+// ek min ek min 
+export const axiosInstance = axios.create({ 
     baseURL: BASE_URL,
     timeout: 80000,
     headers: {
