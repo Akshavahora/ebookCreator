@@ -14,6 +14,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ 
       ...formData,
@@ -26,7 +27,19 @@ const LoginPage = () => {
     setIsLoading(true);
  
     try {
-      
+      //  send data to backend and wait for backend to respond
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, formData);
+      const { token } = response.data;
+
+      // fetch profile to get user details
+      const profileResponse = await axiosInstance.get(API_PATHS.AUTH.GET_PROFILE, {
+        headers: {Authorization: `Bearer ${token}` },
+      });
+
+      login(profileResponse.data, token);
+      toast.success("Login Successful!");
+      navigate("/dashboard");
+
     } catch (error) {
       localStorage.clear()
       toast.error(error.response?.data?.message || "Login failed. PLease try again later")
@@ -71,13 +84,13 @@ const LoginPage = () => {
               required
             />
 
-            <button type="submit" isLoading={isLoading} className="w-full">
+            <Button type="submit" isLoading={isLoading} className="w-full">
               Sign In
-            </button>
+            </Button>
           </form>
 
           <p className="text-center text-sm text-slate-600 mt-8">
-            Don't have an account?(' ')
+            Don't have an account? { ' '}
             <Link to="/signup" className="font-medium text-violet-600 hover:text-violet-700">
             Sign up</Link>
           </p>

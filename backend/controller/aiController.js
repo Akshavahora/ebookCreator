@@ -1,8 +1,8 @@
-import {GoogleGenAI} from '@google/generative-ai'//loads the Gemini AI library installed from npm
+import { GoogleGenerativeAI } from "@google/generative-ai";//loads the Gemini AI library installed from npm
 
 // console.log("API Key:", process.env.GEMINI_API_KEY);
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY }); //creates a new Gemini AI client object.
+const ai = new GoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY }); //creates a new Gemini AI client object.
 
 // @desc Generate a book outline
 // @route POST /api/ai/generate-outline

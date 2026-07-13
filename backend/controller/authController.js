@@ -64,20 +64,22 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({ email }).select("+password");
 
     if (user && (await user.matchPassword(password))) {
-      res.json({
+      return res.json({
         message: "Login Successful",
         _id: user._id,
         name: user.name,
         email: user.email,
         token: generateToken(user._id),
       });
-    } else {
-      res.status(401).json({ message: "Invalid email or password" });
     }
 
-    res.json({ message: "Login API working" });
+    return res.status(401).json({
+      message: "Invalid email or password",
+    });
   } catch (err) {
-    res.status(500).json({ message: "Server Error" });
+    return res.status(500).json({
+      message: "Server Error",
+    });
   }
 };
 
