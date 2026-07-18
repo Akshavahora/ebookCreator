@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react"
 import{ useNavigate } from "react-router-dom"
 
-const ProfilePage = ({isOpen, 
+const ProfileDropdown = ({isOpen, 
   onToggle,
   avatar,
   companyName,
@@ -64,7 +64,6 @@ const ProfilePage = ({isOpen,
         </div>
       )}
     </div>
-  )
-}
+  )}
 
-export default ProfilePage
+export default ProfileDropdown

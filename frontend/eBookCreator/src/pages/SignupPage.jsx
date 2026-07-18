@@ -31,7 +31,7 @@ const SignupPage = () => {
 
       // Fetch profile api to get user details 
       const profileResponse = await axiosInstance.get(API_PATHS.AUTH.GET_PROFILE, {
-        header: { Authorization: `Bearer ${ token }`}
+        headers: { Authorization: `Bearer ${ token }`}
       })
 
       login(profileResponse.data, token);

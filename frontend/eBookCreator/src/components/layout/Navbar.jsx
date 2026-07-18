@@ -55,7 +55,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <ProfileDropdown
               isOpen={profileDropdownOpen}
-              onToggle={(e) => {s
+              onToggle={(e) => {
                 e.stopPropagation();
                 setProfileDropdownOpen(!profileDropdownOpen);
               }}
@@ -127,7 +127,7 @@ const Navbar = () => {
               </div>
               <button
                 className="w-full px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-reg-50 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
-                onClick={() => LogOut()}
+                onClick={() => logout()}
               >
                 <LogOut className="w-4 h-4" />
                 <span>Sign Out</span>
