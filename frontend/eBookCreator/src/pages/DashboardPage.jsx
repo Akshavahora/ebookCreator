@@ -9,6 +9,7 @@ import { useAuth } from "../context/AuthContext";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPath";
 import BookCard from "../components/cards/BookCard";
+import CreateBookModal from "../components/modals/CreateBookModal";
 
 // Skeleton Loader for Book Card
 const BookCardSkeleton = () => (
@@ -56,7 +57,7 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message }) => {
 const DashboardPage = () => {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCreteModalOpen, setIsCreateModelOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModelOpen] = useState(false);
   const [bookToDelete, setBookToDelete] = useState(null);
   const { User } = useAuth();
   const navigate = useNavigate();
@@ -160,7 +161,7 @@ const DashboardPage = () => {
         />
 
         <CreateBookModal
-          isOpen={isCreteModalOpen}
+          isOpen={isCreateModalOpen}
           onClose={() => setIsCreateModelOpen(false)}
           onBookCreated={handleBookCreated}
         />

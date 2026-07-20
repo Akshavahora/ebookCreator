@@ -1,8 +1,9 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";//loads the Gemini AI library installed from npm
+import { GoogleGenAI } from "@google/genai"; //loads the Gemini AI library installed from npm
 
-// console.log("API Key:", process.env.GEMINI_API_KEY);
-
-const ai = new GoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY }); //creates a new Gemini AI client object.
+//creates a new Gemini AI client object.
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
+}); 
 
 // @desc Generate a book outline
 // @route POST /api/ai/generate-outline
@@ -10,7 +11,7 @@ const ai = new GoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY }); //cre
 
 const generateOutline = async (req,res) => {
     try {
-        console.log("generateOutline called");
+        // console.log("generateOutline called");
         const { topic, style, numChapters, description } = req.body;
 
         if(!topic) {
@@ -53,7 +54,7 @@ const generateOutline = async (req,res) => {
             contents: prompt,
         });
 
-        console.log("Response:", response);
+        // console.log("Response:", response);
 
         const text = response.text;
 

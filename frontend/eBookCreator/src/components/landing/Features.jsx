@@ -83,7 +83,7 @@ const Features = () => {
             <div className="text-center mt-16">
                 <p className="text-gray-600 mb-6">Ready to get started?</p>
                 <a
-                    href="/signup"
+                    href="/login"
                     className="inline-flex items-center space-x-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white px-8
                      py-4 rounded-xl font-semibold shadow-lg shadow-violet-500/30 hover:shadow-vio-500/50 hover:scale-105 transition-all duration-200"
                 >
