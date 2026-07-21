@@ -4,7 +4,7 @@ const Features = () => {
     return <div id="features" className="relative py-24 lg:py-32 bg-white overflow-hidden">
 
         {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-50/50 via-transparent to-purple-50/50"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-violet-50/50 via-transparent to-purple-50/50"></div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <div className="text-center mb-20 space-y-4">
@@ -17,7 +17,7 @@ const Features = () => {
 
                 <h2 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-gray-900 tracking-tight">
                     Everything you need to
-                    <span className="block mt-2 bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+                    <span className="block mt-2 bg-linear-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
                         Create your Ebook
                     </span>
                 </h2>
@@ -35,11 +35,11 @@ const Features = () => {
                             key={index}
                             className="group relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-violet-200 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/10 hover:transition-y-1"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-violet-50/0 to-purple-50/0 group-hover:from-violet-50/50 group-hover:to-purple-50/30 rounded-2xl transition-all duration-300"></div>
+                            <div className="absolute inset-0 bg-linear-to-br from-violet-50/0 to-purple-50/0 group-hover:from-violet-50/50 group-hover:to-purple-50/30 rounded-2xl transition-all duration-300"></div>
 
                             <div className="relative space-y-4">
                                 <div
-                                    className={`w-14 h-14 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center shadow-lg shadow-${feature.gradient}/20 group-hover:scale-110 transition-transform duration-300`}
+                                    className={`w-14 h-14 bg-linear-to-br ${feature.gradient} rounded-xl flex items-center justify-center shadow-lg shadow-${feature.gradient}/20 group-hover:scale-110 transition-transform duration-300`}
                                 >
                                     <Icon
                                         className="w-7 h-7 text-white" />
@@ -84,7 +84,7 @@ const Features = () => {
                 <p className="text-gray-600 mb-6">Ready to get started?</p>
                 <a
                     href="/login"
-                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white px-8
+                    className="inline-flex items-center space-x-2 bg-linear-to-r from-violet-600 to-purple-600 text-white px-8
                      py-4 rounded-xl font-semibold shadow-lg shadow-violet-500/30 hover:shadow-vio-500/50 hover:scale-105 transition-all duration-200"
                 >
                     <span>Start Creating Today</span>

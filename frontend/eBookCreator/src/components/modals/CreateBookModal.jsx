@@ -25,8 +25,8 @@ const CreateBookModal = ({isOpen, onClose, onBookCreated}) => {
   const [step, setStep] = useState(1);
   const [bookTitle, setBookTitle] = useState("");
   const [numChapters, setNumChapters] = useState(5);
-  const [aiStyle, setAiStyle] = useState("");
   const [aiTopic, setAiTopic] = useState("");
+  const [aiStyle, setAiStyle] = useState("Informative");
   const [chapters, setChapters] = useState([]);
   const [isGeneratingOutline, setIsGeneratingOutline] = useState(false);
   const [isFinalizingBook, setIsFinalizingBook] = useState(false);
@@ -84,7 +84,7 @@ const CreateBookModal = ({isOpen, onClose, onBookCreated}) => {
   };
 
   const handleFinalizeBook = async () => {
-    if(!bookTitle ||  chapters.length === 0) {
+    if(!bookTitle ||  !chapters.length === 0) {
       toast.error("Book title and at least one chapter are required.");
       return;
     }
