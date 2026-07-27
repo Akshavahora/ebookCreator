@@ -22,6 +22,8 @@ import Button from "../components/ui/Button";
 import Modal from "../components/ui/Modal";
 import SelectField from "../components/ui/SelectField";
 import ChapterSidebar from "../components/editor/ChapterSidebar";
+import ChapterEditorTab from "../components/editor/ChapterEditorTab";
+import BookDetailsTab from "../components/editor/BookDetailsTab";
 
 const EditorPage = () => {
   const { bookId } = useParams();
@@ -33,7 +35,7 @@ const EditorPage = () => {
   const [selectedChapterIndex, setSelectedChapterIndex] = useState(0);
   const [activeTab, sesActiveTab] = useState("editor");
   const fileInputRef = useRef(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // AI Modal State
   const [isOutlineModalOpen, setIsOutlineModalOpen] = useState(false);
@@ -66,25 +68,25 @@ const EditorPage = () => {
     }));
   };
 
-  const handleChapterChange = (e) => {};
+  const handleChapterChange = (e) => { };
 
-  const handelAddChapter = () => {};
+  const handelAddChapter = () => { };
 
-  const handleDeleteChapter = () => {};
+  const handleDeleteChapter = () => { };
 
-  const handleRecorderChapters = (oldIndex, newIndex) => {};
+  const handleRecorderChapters = (oldIndex, newIndex) => { };
 
-  const handleSaveChanges = async (bookToSave = book, showToast = true) => {};
+  const handleSaveChanges = async (bookToSave = book, showToast = true) => { };
 
-  const handleCoverImageUpload = async (e) => {};
+  const handleCoverImageUpload = async (e) => { };
 
-  const handleGenerateOutline = async () => {};
+  const handleGenerateOutline = async () => { };
 
-  const handleGenerateChapterContent = async (index) => {};
+  const handleGenerateChapterContent = async (index) => { };
 
-  const handleExportPDF = async () => {};
+  const handleExportPDF = async () => { };
 
-  const handleExportDoc = async () => {};
+  const handleExportDoc = async () => { };
 
   if (isLoading || !book) {
     return (
@@ -136,6 +138,107 @@ const EditorPage = () => {
             <div className="flex-shrink-0 w-14" aria-hidden="true"></div>
           </div>
         )}
+
+        {/* Desktop Sidebar */}
+        <div className="hidden md:flex md:flex-shrink-0 sticky top-0 h-screen ">
+          <ChapterSidebar
+            book={book}
+            selectedChapterIndex={selectedChapterIndex}
+            onSelectChapter={(index) => {
+              setSelectedChapterIndex(index);
+              setIsSidebarOpen(false);
+            }}
+            onAddChapter={handelAddChapter}
+            onDeleteChapter={handleDeleteChapter}
+            onGenerateChapterContent={handleGenerateChapterContent}
+            isGenerating={isGenerating}
+            onRecorderChapters={handleRecorderChapters}
+          />
+        </div>
+
+        <main className="flex-1 h-full flex flex-col">
+          <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-sm border-b border-slate-200 p-3 flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsSidebarOpen(true)}
+                className="md:hidden p-2 text-slate-500 hover:text-slate-800"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+              <div className="hidden sm:flex space-x-1 bg-slate-100 p-1 rounded-lg">
+                <button
+                  onClick={() => sesActiveTab("editor")}
+                  className={`flex items-center justify-center flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors duration-200 ${activeTab === "editor"
+                    ? "bg-white text-slate-800 shadow-sm"
+                    : "text-slate-500 hover:text-slate-700"
+                    }`}
+                >
+                  <Edit className="w-4 h-4 mr-2" />
+                  Editor
+                </button>
+                <button
+                  onClick={() => sesActiveTab("details")}
+                  className={`flex items-center justify-center flex-1 py-2  px-4 text-sm font-medium rounded-md transition-colors duration-200 whitespace-nowrap 
+                    ${activeTab === "details"
+                      ? "bg-white text-slate-800 shadow-sm"
+                      : "text-slate-500 hover:text-slate-700"
+                    }`}
+                >
+                  <NotebookText className="w-4 h-4 mr-2" />
+                  Book Details
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 sm:gap-4">
+              <Dropdown
+                trigger={
+                  <Button variant="secondary" icon={FileDown} >
+                    Export
+                    <ChevronDown className="w-4 h-4 ml-1" />
+                  </Button>
+                }
+              >
+                <DropdownItem onClick={handleExportPDF}>
+                  <FileText className="w-4 h-4 mr-2 text-slate-500" />
+                  Export as PDF
+                </DropdownItem>
+                <DropdownItem onClick={handleExportDoc}>
+                  <FileText className="w-4 h-4 mr-2 text-slate-500" />
+                  Export as Document
+                </DropdownItem>
+              </Dropdown>
+
+              <Button
+                onClick={() => handleSaveChanges()}
+                isLoading={isSaving}
+                icon={Save}
+              >
+                Save Changes
+              </Button>
+            </div>
+          </header>
+
+          <div className="w-full">
+            {activeTab === "editor" ? (
+              <ChapterEditorTab
+                book={book}
+                selectedChapterIndex={selectedChapterIndex}
+                onChapterChange={handleChapterChange}
+                onGenerateChapterContent={handleGenerateChapterContent}
+                isGenerating={isGenerating}
+              />
+            ) : (
+              <BookDetailsTab
+                book={book}
+                onBookChange={handleBookChange}
+                onCoverUpload={handleCoverImageUpload}
+                isUploading={isUploading}
+                fileInputRef={fileInputRef}
+              />
+            )}
+          </div>
+        </main>
       </div>
     </>
   );

@@ -16,8 +16,8 @@ const BookCardSkeleton = () => (
   <div className="animate-pulse bg-white border border-slate-200 rounded-lg shadow-sm">
     <div className="w-full `aspect-[16/25]` bg-slate-200 rounded-t-lg"></div>
     <div className="p-4">
-      <div className="h-6 bg-slate-200 rounded w-3/4 mb-2"></div>
-      <div className="h-4 bg-slate-200 rounded w-1/2 "></div>
+      <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+      <div className="h-4 bg-gray-200 rounded w-1/2 "></div>
     </div>
   </div>
 );
