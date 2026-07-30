@@ -1,3 +1,6 @@
+// import { getHeapStatistics } from "v8";
+// import { deleteBook } from "../../../../backend/controller/bookController";
+
 export const BASE_URL = "http://localhost:5000";
 
 export const API_PATHS = {
@@ -13,9 +16,9 @@ export const API_PATHS = {
         CREATE_BOOK: "/api/books", 
         GET_BOOKS: "/api/books",
         GET_BOOK_BY_ID: "/api/books",
-        UPDATE_BOOK: "/api/books",
+        UPDATE_BOOK: "/api/books",//update the content of the book
         DELETE_BOOK: "/api/books",
-        UPDATE_COVER: "/api/books/cover",
+        UPDATE_COVER: "/api/books/cover", //Update the cover image of book
     },
     AI: {
         GENERATE_OUTLINE: "/api/ai/generate-outline",

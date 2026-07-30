@@ -133,17 +133,17 @@ const EditorPage = () => {
   };
 
   const handleCoverImageUpload = async (e) => {
-    const file = e.target.file[0];
+    const file = e.target.files[0];
     if(!file) return;
 
-    const formData = new formData();
+    const formData = new FormData();
     formData.append("coverImage", file);
     setIsUploading(true);
 
     try {
       const response = await
        axiosInstance.put(
-        `${API_PATHS.BOOKS.UPDATE_BOOK}/${bookId}`,
+        `${API_PATHS.BOOKS.UPDATE_COVER}/${bookId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data"},

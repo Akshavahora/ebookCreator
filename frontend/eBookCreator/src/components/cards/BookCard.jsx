@@ -44,13 +44,13 @@ const BookCard = ({book, onDelete}) => {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 text-white">
+        <div className="absolute bottom-0 left-0 right-0 text-white -mt-4">
           <div className="absolute inset-0 bg-linear-to-t from-black/800 to-transparent backdrop-blur-xs "></div>
           <div className="relative">
-            <h3 className="font-semibold text-white text-sm leading-tight line-clamp-2 mb-1">
+            <h3 className="font-semibold text-white text-sm leading-tight line-clamp-2 mb-1 p-1">
               {book.title}
             </h3>
-            <p className="text-[13px] text-gray-300 font-medium">
+            <p className="text-[13px] text-gray-300 font-medium p-1">
               {book.author}
             </p>
           </div>

@@ -34,7 +34,7 @@ const ChapterEditorTab = ({
             .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
             .replace(/\*(.*?)\*/g, '<em class="font-semibold">$1</em>')
 
-            // Blockquotes
+            // Block quotes
             .replace(/^> (.*$)/gm, '<blockquote class="border-l-4 border-violet-500 pl-4 italic text-gray-700 my-4">$1</blockquote>')
 
             // Unordered List 
