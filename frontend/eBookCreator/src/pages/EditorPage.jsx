@@ -70,11 +70,11 @@ const EditorPage = () => {
 
   const handleChapterChange = (e) => {
     const { name, value } = e.target;
-    const updatedChapters = [ ...book.chapters];
+    const updatedChapters = [...book.chapters];
     updatedChapters[selectedChapterIndex][name] = value;
     setBook((prev) => ({
       ...prev,
-      chapters: updatedChapters
+      chapters: updatedChapters,
     }));
   };
 
@@ -86,7 +86,7 @@ const EditorPage = () => {
     const updatedChapters = [...book.chapters, newChapter];
     setBook((prev) => ({
       ...prev,
-      chapters: updatedChapters
+      chapters: updatedChapters,
     }));
     setSelectedChapterIndex(updatedChapters.length - 1);
   };
@@ -99,13 +99,13 @@ const EditorPage = () => {
     const updatedChapters = book.chapters.filter((_, i) => i !== index);
     setBook((prev) => ({
       ...prev,
-      chapters: updatedChapters
+      chapters: updatedChapters,
     }));
-    setSelectedChapterIndex((prevIndex) => 
-      prevIndex >= index ? Math.max(0, prevIndex - 1) : prevIndex
+    setSelectedChapterIndex((prevIndex) =>
+      prevIndex >= index ? Math.max(0, prevIndex - 1) : prevIndex,
     );
   };
-3
+
   const handleRecorderChapters = (oldIndex, newIndex) => {
     setBook((prev) => ({
       ...prev,
@@ -117,10 +117,11 @@ const EditorPage = () => {
   const handleSaveChanges = async (bookToSave = book, showToast = true) => {
     setIsSaving(true);
     try {
-      await axiosInstance.put(`${API_PATHS.BOOKS.UPDATE_BOOK}/${bookId}`,
-        bookToSave
+      await axiosInstance.put(
+        `${API_PATHS.BOOKS.UPDATE_BOOK}/${bookId}`,
+        bookToSave,
       );
-      if(showToast) {
+      if (showToast) {
         toast.success("Changes saved successfully");
       }
     } catch (error) {
@@ -134,23 +135,22 @@ const EditorPage = () => {
 
   const handleCoverImageUpload = async (e) => {
     const file = e.target.files[0];
-    if(!file) return;
+    if (!file) return;
 
     const formData = new FormData();
     formData.append("coverImage", file);
     setIsUploading(true);
 
     try {
-      const response = await
-       axiosInstance.put(
+      const response = await axiosInstance.put(
         `${API_PATHS.BOOKS.UPDATE_COVER}/${bookId}`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data"},
-        }
-       );
-       setBook(response.data);
-       toast.success("Cover image updated!");
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
+      setBook(response.data);
+      toast.success("Cover image updated!");
     } catch (error) {
       toast.error("Failed to upload cover image.");
     } finally {
@@ -161,28 +161,28 @@ const EditorPage = () => {
   const handleGenerateChapterContent = async (index) => {
     const chapter = book.chapters[index];
     if (!chapter || !chapter.title) {
-      toast.error["Chapter title is required to generate content."]
+      toast.error["Chapter title is required to generate content."];
       return;
     }
     setIsGenerating(index);
     try {
       const response = await axiosInstance.post(
-        API_PATHS.AI.GENERATE_CHAPTER_CONTENT, 
+        API_PATHS.AI.GENERATE_CHAPTER_CONTENT,
         {
           chapterTitle: chapter.title,
           chapterDescription: chapter.description || "",
-          style: aiStyle, 
-        }
+          style: aiStyle,
+        },
       );
       const updatedChapters = [...book.chapters];
       updatedChapters[index].content = response.data.content;
 
-      const updatedBook = { 
-        ...book, 
-        chapters: updatedChapters
+      const updatedBook = {
+        ...book,
+        chapters: updatedChapters,
       };
       setBook(updatedBook);
-      toast.success(`Content for "${chapter.title}" generated!`)
+      toast.success(`Content for "${chapter.title}" generated!`);
 
       await handleSaveChanges(updatedBook, false);
     } catch (error) {
@@ -197,18 +197,23 @@ const EditorPage = () => {
     try {
       const response = await axiosInstance.get(
         `${API_PATHS.EXPORT.PDF}/${bookId}/pdf`,
-        {responseType: "blob"}
+        { responseType: "blob" },
       );
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const url = window.URL.createObjectURL(response.data);
+
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", `${book.title}.pdf`);
+      link.download = `${book.title}.pdf`;
+
       document.body.appendChild(link);
       link.click();
-      link.parentNode.removeChild(link);
-      window.URL.removeObjectURL(url);
+
+      link.remove();
+
+      URL.revokeObjectURL(url);
+
       toast.dismiss();
-      toast.success("PDF export started!");
+      toast.success("PDF downloaded successfully!");
     } catch (error) {
       toast.dismiss();
       toast.error("Failed to export PDF.");
@@ -219,19 +224,23 @@ const EditorPage = () => {
     toast.loading("Generating Document...");
     try {
       const response = await axiosInstance.get(
-        `${API_PATHS.EXPORT.DOCX}/${bookId}/doc`,
-        { responseType: "blob"}
+        `${API_PATHS.EXPORT.DOCX}/${bookId}/docx`,
+        { responseType: "blob" },
       );
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const url = window.URL.createObjectURL(response.data);
+
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", `${book.title}.docx`);
+      link.download = `${book.title}.docx`;
+
       document.body.appendChild(link);
       link.click();
-      link.parentNode.removeChild(link);
-      window.URL.removeObjectURL(url);
+
+      link.remove();
+      URL.revokeObjectURL(url);
+
       toast.dismiss();
-      toast.success("Document export started!");
+      toast.success("Document downloaded successfully!");
     } catch (error) {
       toast.dismiss();
       toast.error("Failed to export Document.");
@@ -318,10 +327,11 @@ const EditorPage = () => {
               <div className="hidden sm:flex space-x-1 bg-slate-100 p-1 rounded-lg">
                 <button
                   onClick={() => sesActiveTab("editor")}
-                  className={`flex items-center justify-center flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors duration-200 ${activeTab === "editor"
-                    ? "bg-white text-slate-800 shadow-sm"
-                    : "text-slate-500 hover:text-slate-700"
-                    }`}
+                  className={`flex items-center justify-center flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors duration-200 ${
+                    activeTab === "editor"
+                      ? "bg-white text-slate-800 shadow-sm"
+                      : "text-slate-500 hover:text-slate-700"
+                  }`}
                 >
                   <Edit className="w-4 h-4 mr-2" />
                   Editor
@@ -329,9 +339,10 @@ const EditorPage = () => {
                 <button
                   onClick={() => sesActiveTab("details")}
                   className={`flex items-center justify-center flex-1 py-2  px-4 text-sm font-medium rounded-md transition-colors duration-200 whitespace-nowrap 
-                    ${activeTab === "details"
-                      ? "bg-white text-slate-800 shadow-sm"
-                      : "text-slate-500 hover:text-slate-700"
+                    ${
+                      activeTab === "details"
+                        ? "bg-white text-slate-800 shadow-sm"
+                        : "text-slate-500 hover:text-slate-700"
                     }`}
                 >
                   <NotebookText className="w-4 h-4 mr-2" />
@@ -343,7 +354,7 @@ const EditorPage = () => {
             <div className="flex items-center gap-2 sm:gap-4">
               <Dropdown
                 trigger={
-                  <Button variant="secondary" icon={FileDown} >
+                  <Button variant="secondary" icon={FileDown}>
                     Export
                     <ChevronDown className="w-4 h-4 ml-1" />
                   </Button>

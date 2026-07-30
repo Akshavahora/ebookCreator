@@ -1,6 +1,6 @@
-import React, { Children, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-const Dropdown = ({trigger, Children}) => {
+const Dropdown = ({trigger, children}) => {
   const [ isOpen, setIsOpen ] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -29,14 +29,14 @@ const Dropdown = ({trigger, Children}) => {
         tabIndex="-1"
       >
         <div className="py-1" role="none">
-          {Children}
+          {children}
         </div>
       </div>
     )}
   </div>
 }
 
-export const DropdownItem = ({ Children, onClick}) => {
+export const DropdownItem = ({ children, onClick}) => {
   return (
     <button 
       className="flex items-center w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 text-left"
@@ -44,7 +44,7 @@ export const DropdownItem = ({ Children, onClick}) => {
       role="menuitem"
       tabIndex="-1"
     >
-      {Children}
+      {children}
     </button>
   )
 }

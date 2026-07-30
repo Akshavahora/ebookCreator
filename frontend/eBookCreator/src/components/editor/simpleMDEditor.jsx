@@ -39,8 +39,9 @@ const SimpleMDEditor = ({
             commands.unorderedListCommand,
             commands.orderedListCommand,
             commands.checkedListCommand,
+            
           ]}
-          hideMenu={true}
+         hideMenu={true}
         />
       </div>
     </div>
