@@ -187,7 +187,7 @@ const ChapterEditorTab = ({
                                                     __html: currentChapter.content ? formalMarkdown(currentChapter.content) : '<p className="text-gray-400 italic">No content yet. Start writing to see the preview.</p>'
                                                 }}  
                                             />
-                                        </div>
+                                        </div>3
                                     </div>
                                 ) : (
                                     <div className="h-full">

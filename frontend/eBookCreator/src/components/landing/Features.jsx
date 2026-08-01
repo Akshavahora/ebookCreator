@@ -79,7 +79,7 @@ const Features = () => {
                     );
                 })}
             </div>
-
+{/* 
             <div className="text-center mt-16">
                 <p className="text-gray-600 mb-6">Ready to get started?</p>
                 <a
@@ -102,7 +102,7 @@ const Features = () => {
                         />
                     </svg>
                 </a>
-            </div>
+            </div> */}
         </div>
     </div>
 }

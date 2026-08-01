@@ -77,6 +77,7 @@ const processMarkdownToDocx = (markdown) => {
             case 3:
               headingLevel = HeadingLevel.HEADING_3;
               fontSize = DOCX_STYLES.sizes.h3;
+              break;
 
             default:
               headingLevel = HeadingLevel.HEADING_3;
@@ -105,6 +106,9 @@ const processMarkdownToDocx = (markdown) => {
 
         if (nextToken && nextToken.type === "inline" && nextToken.children) {
           const textRuns = processInlineTokens(nextToken.children);
+
+          console.log(textRuns);
+          console.log("Runs:", textRuns.length);
 
           if (textRuns.length > 0) {
             paragraphs.push(
@@ -213,7 +217,7 @@ const processMarkdownToDocx = (markdown) => {
                 indent: {
                   left: 720,
                 },
-                alignment: AlignmentType.JuSTIFIED,
+                alignment: AlignmentType.JUSTIFIED,
                 border: {
                   left: {
                     color: "4F46E5",
@@ -270,7 +274,7 @@ const processMarkdownToDocx = (markdown) => {
 };
 
 // Process inline content (bold, italic, underline, text)
-const processInlineContent = (children) => {
+const processInlineTokens = (children) => {
   const textRuns = [];
   let currentFormatting = {
     bold: false,
@@ -360,19 +364,24 @@ const exportAsDocument = async (req, res) => {
           // Add image centered on the opage
           coverPage.push(
             new Paragraph({
+              alignment: AlignmentType.CENTER,
+              spacing: {
+                before: 1500,
+                after: 500,
+              },
               children: [
                 new ImageRun({
                   data: imageBuffer,
                   transformation: {
-                    width: 1000, //width in pixels
-                    height: 550,
+                    width: 1000,
+                    height: 750,
                   },
                 }),
               ],
-              alignment: AlignmentType.CENTER,
-              spacing: { before: 200, after: 400 },
-            }),
+            })
           );
+
+          coverPage.push(new Paragraph(""));
 
           // page break after cover
           coverPage.push(
@@ -494,27 +503,47 @@ const exportAsDocument = async (req, res) => {
           }),
         );
 
+        console.log("Chapter:", chapter.title);
+        console.log("Content:", chapter.content);
+
+
         // chapter content
         const contentParagraphs = processMarkdownToDocx(chapter.content || "");
+        console.log(contentParagraphs[0]);
+
+
+        console.log("Paragraphs generated:", contentParagraphs.length);
+        sections.push(...contentParagraphs);
+
+
       } catch (chapterError) {
         console.log(`Error Processing Chapter ${index}:`, chapterError);
       }
     });
 
+
+    console.log("Total sections:", sections.length);
+    console.log(sections.slice(-5)); // Show the last 5 items
+
+
     // ===================== DOC FINAL =====================
     const doc = new Document({
       sections: [
         {
-          properties: {
-            page: {
-              margin: {
-                top: 1440,
-                right: 1440,
-                bottom: 1440,
-                left: 1440,
-              },
-            },
-          },
+        properties: {
+  page: {
+    size: {
+      width: 19906,   // A4 width 
+      height: 19838,  // A4 height 
+    },
+    margin: {
+      top: 720,
+      right: 720,
+      bottom: 720,
+      left: 720,
+    },
+  },
+},
           children: sections,
         },
       ],
