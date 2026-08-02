@@ -2,7 +2,6 @@ import { useMemo, useState } from "react"
 import { Sparkle, Type, Eye, Maximize2, SpellCheck, FileX, Target } from "lucide-react"
 import Button from "../ui/Button"
 import InputField from "../ui/InputField"
-import SimpleMDEditor from "./SimpleMDEditor"
 
 const ChapterEditorTab = ({
     book = {
