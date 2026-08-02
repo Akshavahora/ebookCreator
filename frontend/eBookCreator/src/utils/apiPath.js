@@ -1,6 +1,3 @@
-// import { getHeapStatistics } from "v8";
-// import { deleteBook } from "../../../../backend/controller/bookController";
-
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const API_PATHS = {
