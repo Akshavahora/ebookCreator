@@ -42,8 +42,8 @@ const Hero = () => {
                                 to={isAuthenticated ? "/dashboard" : "/login"}
                                 className="group inline-flex items-center space-x-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 hover:scale-105 transition-all duration-200"
                             >
-                                <span>Start Creating For Free</span>
-                                <ArrowRight className="w-5 g-5 group-hover:translate-x transition-transform-1" />
+                                <span>{isAuthenticated ? "Go to Dashboard" : "Get Started"}</span>
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x transition-transform-1" />
                             </Link>
 
                             <a
