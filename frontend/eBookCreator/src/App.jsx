@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
 import EditorPage from "./pages/EditorPage";
-import ViewBookpage from "./pages/ViewBookpage";
+import ViewBookPage from "./pages/ViewBookPage";
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
@@ -27,7 +27,7 @@ const App = () => {
           element={<ProtectedRoute><EditorPage /></ProtectedRoute>} />
         <Route
           path="/view-book/:bookId"
-          element={<ProtectedRoute><ViewBookpage /></ProtectedRoute>} />
+          element={<ProtectedRoute><ViewBookPage /></ProtectedRoute>} />
         <Route
           path="/profile"
           element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
