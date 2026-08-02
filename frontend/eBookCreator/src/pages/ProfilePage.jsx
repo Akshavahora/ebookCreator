@@ -1,8 +1,87 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import { User, Mail } from "lucide-react";
+
+import DashboardLayout from "../components/layout/DashboardLayout";
+import InputField from "../components/ui/InputField";
+import Button from "../components/ui/Button";
+import { useAuth } from "../context/AuthContext";
+import axiosInstance from "../utils/AxiosInstance";
+import { API_PATHS } from "../utils/apiPath";
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
+
+  const { user, updateUser, loading: authLoading } = useAuth();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if(user) {
+      setFormData({ name: user.name, email: user.email });
+    }
+ }, [user]);
+
+ const handleChange =(e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value 
+  });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await axiosInstance.put(API_PATHS.AUTH.UPDATE_PROFILE, {
+      name: formData.name,
+      });
+      updateUser(response.data); //update user in context
+      toast.success("Profile updated Successfully.");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to upload profile.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div>ProfilePage</div>
+    <DashboardLayout  activeMenu="profile">
+      <div className="max-w-2xl mx-auto px-5">
+        <h1 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 mt-10">Profile</h1>
+        <p className="text-gray-600 text-sm mb-8">Manage Your account information</p>
+
+        <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+          <form onSubmit={handleSubmit} className="">
+            <InputField
+              label="Full Name"
+              name="name"
+              type="text"
+              icon={User}
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Email"
+              name="email"
+              type="email"
+              icon={Mail}
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <div className="flex justify-end">
+              <Button type="submit" loading={loading}>
+                Update Profile
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </DashboardLayout>
   )
 }
 
