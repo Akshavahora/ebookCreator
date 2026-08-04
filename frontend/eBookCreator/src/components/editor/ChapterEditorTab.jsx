@@ -52,7 +52,7 @@ const ChapterEditorTab = ({
                 if (!paragraph) return '';
                 // Skip if already wrapped in HTML tags
                 if (paragraph.startsWith('<')) return paragraph;
-                return '<p class="mb-4 text-justify">${paragraph}</p>';
+                return `<p class="mb-4 text-justify">${paragraph}</p>`;
             })
             .join('');
     };
@@ -187,7 +187,7 @@ const ChapterEditorTab = ({
                                                     __html: currentChapter.content ? formalMarkdown(currentChapter.content) : '<p className="text-gray-400 italic">No content yet. Start writing to see the preview.</p>'
                                                 }}  
                                             />
-                                        </div>3
+                                        </div>
                                     </div>
                                 ) : (
                                     <div className="h-full">
