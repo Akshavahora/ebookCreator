@@ -23,7 +23,7 @@ const ChapterEditorTab = ({
     const [isFullScreen, setFullScreen] = useState(false);
 
     // simple markdown parser
-    const formatMarkdown = (content) => {
+    const formalMarkdown = (content) => {
         return content
             // Headers
             .replace(/^### (.*$)/gm, '<h3 class="text-xl font-bold mb-4 mt-6">$1</h3>')
