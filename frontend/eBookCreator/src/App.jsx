@@ -8,6 +8,7 @@ import DashboardPage from "./pages/DashboardPage";
 import EditorPage from "./pages/EditorPage";
 import ViewBookPage from "./pages/ViewBookPage";
 import ProfilePage from "./pages/ProfilePage";
+import About from "./pages/AboutUsPage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Signup" element={<SignupPage />} />
+        <Route path="/About" element={<About />} />
 
         {/* Protected Routes */}
         <Route
