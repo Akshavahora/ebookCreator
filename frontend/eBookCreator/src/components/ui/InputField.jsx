@@ -1,18 +1,12 @@
-
 import React from "react";
 
-const InputField = ({
-  icon: Icon,
-  label,
-  name,
-  ...props
-}) => {
+const InputField = ({ icon: Icon, label, name, ...props }) => {
   return (
     <div className="space-y-2">
       {/* Label */}
       <label
         htmlFor={name}
-        className="block text-sm font-medium text-gray-200"
+        className="block text-sm font-semibold text-gray-800"
       >
         {label}
       </label>
@@ -21,7 +15,7 @@ const InputField = ({
       <div className="relative">
         {/* Input Icon */}
         {Icon && (
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-3.5">
             <Icon className="h-4 w-4 text-gray-500" />
           </div>
         )}
@@ -36,21 +30,22 @@ const InputField = ({
             w-full
             rounded-xl
             border
-            border-white/10
-            bg-white/[0.05]
+            border-slate-300
+            bg-white
             px-3
             py-2
             ${Icon ? "pl-10" : "pl-3"}
-            text-white
-            placeholder:text-gray-600
+            text-sm
+            font-medium
+            text-slate-900
+            placeholder:text-slate-400
             outline-none
             transition-all
             duration-200
-            hover:border-white/20
-            focus:border-violet-500/60
-            focus:bg-white/[0.07]
-            focus:ring-2
-            focus:ring-violet-500/10
+            hover:border-slate-400
+            focus:border-indigo-500
+            focus:ring-4
+            focus:ring-indigo-500/10
           `}
         />
       </div>
@@ -59,4 +54,3 @@ const InputField = ({
 };
 
 export default InputField;
-
